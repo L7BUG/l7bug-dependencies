@@ -45,7 +45,7 @@ import java.io.Serial;
  * @author l
  * @since 2025/11/6 22:02
  */
-public abstract class ServerException extends AbstractException {
+public class ServerException extends AbstractException {
 
 	@Serial
 	private static final long serialVersionUID = -2792205451717430321L;
