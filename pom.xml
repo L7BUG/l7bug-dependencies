@@ -13,10 +13,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>l7bug-common</module>
+        <module>l7bug-database-spring-boot-starter</module>
     </modules>
     <groupId>com.l7bug</groupId>
     <artifactId>l7bug-dependencies</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
 
     <properties>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -154,6 +155,12 @@
                 <artifactId>transmittable-thread-local</artifactId>
                 <version>${transmittable-thread-local.version}</version>
             </dependency>
+
+			<dependency>
+				<groupId>com.l7bug</groupId>
+				<artifactId>l7bug-database-spring-boot-starter</artifactId>
+				<version>${version}</version>
+			</dependency>
         </dependencies>
     </dependencyManagement>
     <build>
