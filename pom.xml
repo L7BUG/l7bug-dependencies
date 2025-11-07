@@ -17,7 +17,7 @@
     </modules>
     <groupId>com.l7bug</groupId>
     <artifactId>l7bug-dependencies</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
 
     <properties>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -159,6 +159,12 @@
 			<dependency>
 				<groupId>com.l7bug</groupId>
 				<artifactId>l7bug-database-spring-boot-starter</artifactId>
+				<version>${version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.l7bug</groupId>
+				<artifactId>l7bug-common</artifactId>
 				<version>${version}</version>
 			</dependency>
         </dependencies>
