@@ -20,6 +20,7 @@
     <version>1.0.6-SNAPSHOT</version>
 
     <properties>
+		<version>1.0.6-SNAPSHOT</version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.3.3</spring-cloud-alibaba.version>
         <!--		<mybatis-spring-boot-starter.version>3.0.2</mybatis-spring-boot-starter.version>-->
