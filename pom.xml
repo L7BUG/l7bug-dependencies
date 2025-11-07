@@ -20,7 +20,7 @@
     <version>1.0.6-SNAPSHOT</version>
 
     <properties>
-		<version>1.0.6-SNAPSHOT</version>
+		<deploy.version>1.0.6-SNAPSHOT</deploy.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.3.3</spring-cloud-alibaba.version>
         <!--		<mybatis-spring-boot-starter.version>3.0.2</mybatis-spring-boot-starter.version>-->
@@ -160,13 +160,13 @@
 			<dependency>
 				<groupId>com.l7bug</groupId>
 				<artifactId>l7bug-database-spring-boot-starter</artifactId>
-				<version>${version}</version>
+				<version>${deploy.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.l7bug</groupId>
 				<artifactId>l7bug-common</artifactId>
-				<version>${version}</version>
+				<version>${deploy.version}</version>
 			</dependency>
         </dependencies>
     </dependencyManagement>
