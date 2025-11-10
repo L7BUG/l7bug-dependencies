@@ -34,7 +34,7 @@
 
 package com.l7bug.common.exception;
 
-import com.l7bug.common.error.BaseErrorCode;
+import com.l7bug.common.error.ClientErrorCode;
 
 import java.io.Serial;
 
@@ -50,12 +50,12 @@ public class ClientException extends AbstractException {
 	@Serial
 	private static final long serialVersionUID = 3880071539113901982L;
 
-	public ClientException(BaseErrorCode code) {
+	public ClientException(ClientErrorCode code) {
 		super(code.getCode(), code.getMessage());
 
 	}
 
-	public ClientException(BaseErrorCode code, Throwable e) {
+	public ClientException(ClientErrorCode code, Throwable e) {
 		super(code.getCode(), code.getMessage(), e);
 	}
 }

@@ -34,7 +34,7 @@
 
 package com.l7bug.common.exception;
 
-import com.l7bug.common.error.BaseErrorCode;
+import com.l7bug.common.error.RemoteErrorCode;
 
 import java.io.Serial;
 
@@ -50,12 +50,12 @@ public class RemoteException extends AbstractException {
 	@Serial
 	private static final long serialVersionUID = 5861460393188118437L;
 
-	public RemoteException(BaseErrorCode code) {
+	public RemoteException(RemoteErrorCode code) {
 		super(code.getCode(), code.getMessage());
 
 	}
 
-	public RemoteException(BaseErrorCode code, Throwable e) {
+	public RemoteException(RemoteErrorCode code, Throwable e) {
 		super(code.getCode(), code.getMessage(), e);
 	}
 }

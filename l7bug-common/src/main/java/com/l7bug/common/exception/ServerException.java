@@ -35,6 +35,7 @@
 package com.l7bug.common.exception;
 
 import com.l7bug.common.error.BaseErrorCode;
+import com.l7bug.common.error.ServerErrorCode;
 
 import java.io.Serial;
 
@@ -50,7 +51,7 @@ public class ServerException extends AbstractException {
 	@Serial
 	private static final long serialVersionUID = -2792205451717430321L;
 
-	public ServerException(BaseErrorCode code) {
+	public ServerException(ServerErrorCode code) {
 		super(code.getCode(), code.getMessage());
 
 	}
