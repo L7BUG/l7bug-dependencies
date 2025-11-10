@@ -15,6 +15,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	CLIENT_ERROR("C000000", "客户端错误"),
 	LOGIN_ERROR("C000001", "登录失败!账号或密码错误!"),
 	USER_IS_DISABLE("C000002", "登录失败!用户已被禁用!请联系管理员解除封禁!"),
+	ACCESS_DENIED("C000003", "未授权禁止访问!请联系管理员为你授权!"),
 	;
 	private final String code;
 	private final String message;
