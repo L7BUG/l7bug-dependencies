@@ -23,4 +23,8 @@ public class Result<T> {
 	public boolean isSuccess() {
 		return SUCCESS.equals(code);
 	}
+
+	public boolean isFailure() {
+		return !isSuccess();
+	}
 }
