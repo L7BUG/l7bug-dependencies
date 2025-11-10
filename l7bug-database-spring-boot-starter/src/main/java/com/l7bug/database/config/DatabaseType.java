@@ -15,5 +15,4 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "l7bug.database")
 public class DatabaseType {
 	private DbType dbType = DbType.POSTGRE_SQL;
-	private Long rootId = -1L;
 }

@@ -52,6 +52,7 @@ import java.time.LocalDateTime;
 public class DataBaseAutoConfiguration {
 
 	private final DatabaseType databaseType;
+	private final CurrentUserId currentUserId;
 
 	/**
 	 * MyBatis-Plus MySQL 分页插件
@@ -78,7 +79,7 @@ public class DataBaseAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public MyMetaObjectHandler myMetaObjectHandler() {
-		return new MyMetaObjectHandler(databaseType);
+		return new MyMetaObjectHandler(currentUserId);
 	}
 
 	public interface CurrentUserId {
@@ -91,12 +92,12 @@ public class DataBaseAutoConfiguration {
 	public static class MyMetaObjectHandler implements MetaObjectHandler {
 
 
-		private final DatabaseType databaseType;
+		private final CurrentUserId currentUserId;
 
 		@Override
 		public void insertFill(MetaObject metaObject) {
-			strictInsertFill(metaObject, "createBy", databaseType::getRootId, Long.class);
-			strictInsertFill(metaObject, "updateBy", databaseType::getRootId, Long.class);
+			strictInsertFill(metaObject, "createBy", currentUserId::getCurrentUserId, Long.class);
+			strictInsertFill(metaObject, "updateBy", currentUserId::getCurrentUserId, Long.class);
 			strictInsertFill(metaObject, "createTime", LocalDateTime::now, LocalDateTime.class);
 			strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
 			strictInsertFill(metaObject, "delFlag", () -> false, Boolean.class);
@@ -105,7 +106,7 @@ public class DataBaseAutoConfiguration {
 		@Override
 		public void updateFill(MetaObject metaObject) {
 			strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
-			strictInsertFill(metaObject, "updateBy", databaseType::getRootId, Long.class);
+			strictInsertFill(metaObject, "updateBy", currentUserId::getCurrentUserId, Long.class);
 		}
 	}
 }
