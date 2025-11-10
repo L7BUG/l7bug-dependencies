@@ -14,8 +14,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result<T> {
+	public final static String SUCCESS = "0";
 	private String requestId;
 	private String code;
 	private String message;
 	private T data;
+
+	public boolean isSuccess() {
+		return SUCCESS.equals(code);
+	}
 }
