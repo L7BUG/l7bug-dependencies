@@ -34,7 +34,6 @@
 
 package com.l7bug.database.config;
 
-import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
@@ -46,12 +45,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+
 @AutoConfiguration
 @AllArgsConstructor
 @EnableConfigurationProperties(DatabaseType.class)
 public class DataBaseAutoConfiguration {
 
 	private final DatabaseType databaseType;
+
 	/**
 	 * MyBatis-Plus MySQL 分页插件
 	 */
@@ -63,6 +64,14 @@ public class DataBaseAutoConfiguration {
 		return interceptor;
 	}
 
+	@Bean
+	@ConditionalOnMissingBean
+	public CurrentUserId currentUserId() {
+		return new CurrentUserId() {
+		};
+	}
+
+
 	/**
 	 * MyBatis-Plus 源数据自动填充类
 	 */
@@ -71,11 +80,19 @@ public class DataBaseAutoConfiguration {
 	public MyMetaObjectHandler myMetaObjectHandler() {
 		return new MyMetaObjectHandler(databaseType);
 	}
+
+	public interface CurrentUserId {
+		default Long getCurrentUserId() {
+			return -1L;
+		}
+	}
+
 	@AllArgsConstructor
 	public static class MyMetaObjectHandler implements MetaObjectHandler {
 
 
 		private final DatabaseType databaseType;
+
 		@Override
 		public void insertFill(MetaObject metaObject) {
 			strictInsertFill(metaObject, "createBy", databaseType::getRootId, Long.class);
