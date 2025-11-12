@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ServerErrorCode implements BaseErrorCode {
-	SERVER_ERROR("S000000", "系统执行出错");
+	SERVER_ERROR("S000000", "系统执行出错"),
+	TIME_OUT("S000001", "当前操作频繁,请稍后再试"),
+	;
 	private final String code;
 	private final String message;
 }
