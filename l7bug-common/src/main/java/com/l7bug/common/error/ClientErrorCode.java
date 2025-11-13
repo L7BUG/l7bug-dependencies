@@ -19,6 +19,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	LOGIN_ERROR("C000004", "登录失败!账号或密码错误!"),
 	USER_IS_DISABLE("C000005", "登录失败!用户已被禁用!请联系管理员解除封禁!"),
 	USER_NOT_NULL("C000006", "注册失败,该用户已被注册"),
+	USER_PASSWORD_IS_ERROR("C000007", "用户密码错误!"),
 	/*客户端非法操作 1开头*/
 	DATA_IS_NULL("C100000", "操作的数据不存在!"),
 	;
