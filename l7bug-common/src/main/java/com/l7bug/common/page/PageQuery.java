@@ -19,7 +19,7 @@ public class PageQuery {
 	/**
 	 * 页面大小
 	 */
-	private long size = 0;
+	private long size = 10;
 	/**
 	 * 需要进行排序的字段,默认 id
 	 */
