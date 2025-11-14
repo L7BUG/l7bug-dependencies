@@ -3,6 +3,7 @@ package com.l7bug.database.dataobject;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 import java.io.Serial;
@@ -39,5 +40,6 @@ public class BaseDo implements Serializable {
 	 * 删除标识 0：未删除 1：已删除
 	 */
 	@TableField(fill = FieldFill.INSERT)
+	@TableLogic(value = "true",delval = "false")
 	private Boolean delFlag;
 }
