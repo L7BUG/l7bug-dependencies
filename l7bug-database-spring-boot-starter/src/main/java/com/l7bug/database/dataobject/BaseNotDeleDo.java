@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,15 +17,22 @@ import java.time.LocalDateTime;
  * @since 2025/8/20 14:06
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class BaseDo extends BaseNotDeleDo {
+public class BaseNotDeleDo implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -7865608655588766372L;
 
-	/**
-	 * 删除标识 0：未删除 1：已删除
-	 */
+	@TableId
+	private Long id;
+
 	@TableField(fill = FieldFill.INSERT)
-	@TableLogic(value = "false",delval = "true")
-	private Boolean delFlag;
+	private Long createBy;
+
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	private Long updateBy;
+
+	@TableField(fill = FieldFill.INSERT)
+	private LocalDateTime createTime;
+
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	private LocalDateTime updateTime;
 }
