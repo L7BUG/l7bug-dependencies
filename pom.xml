@@ -14,6 +14,7 @@
     <modules>
         <module>l7bug-common</module>
         <module>l7bug-database-spring-boot-starter</module>
+		<module>l7bug-web-spring-boot-starter</module>
     </modules>
     <groupId>com.l7bug</groupId>
     <artifactId>l7bug-dependencies</artifactId>
