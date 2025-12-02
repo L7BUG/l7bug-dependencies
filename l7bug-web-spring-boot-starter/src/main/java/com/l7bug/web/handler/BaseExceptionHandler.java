@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class BaseExceptionHandler {
 	/**
 	 * 拦截应用内抛出的异常
 	 */
