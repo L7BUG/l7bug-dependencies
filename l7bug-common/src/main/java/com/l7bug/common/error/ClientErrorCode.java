@@ -22,6 +22,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	USER_PASSWORD_IS_ERROR("C000007", "用户密码错误!"),
 	/*客户端非法操作 1开头*/
 	DATA_IS_NULL("C100000", "操作的数据不存在!"),
+	CHILDREN_IS_NOT_NULL("C100001", "子节点不为空!"),
 	;
 	private final String code;
 	private final String message;
