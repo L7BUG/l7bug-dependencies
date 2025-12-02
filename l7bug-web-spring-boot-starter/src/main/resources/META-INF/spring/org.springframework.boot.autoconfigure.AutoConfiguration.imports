@@ -1,2 +1,3 @@
 com.l7bug.web.config.JacksonConfig
 com.l7bug.web.config.WebAutoConfiguration
+com.l7bug.web.handler.GlobalExceptionHandler
