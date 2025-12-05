@@ -1,16 +1,20 @@
 package com.l7bug.web.config;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.ext.javatime.deser.LocalDateDeserializer;
+import tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer;
+import tools.jackson.databind.ext.javatime.ser.LocalDateSerializer;
+import tools.jackson.databind.ext.javatime.ser.LocalDateTimeSerializer;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.module.SimpleModule;
+import tools.jackson.databind.ser.std.ToStringSerializer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,25 +28,46 @@ import java.util.TimeZone;
  * @since 2025/8/25 11:28
  */
 public class JacksonConfig {
-	private static final String DATE_FORMAT = "yyyy-MM-dd";
-	private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+
+	// 定义统一的日期时间格式
+	private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	private static final String DATE_PATTERN = "yyyy-MM-dd";
+
+	// 创建格式化器
+	private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
 	@Bean
-	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
-		return builder -> {
-			// 注册 JavaTimeModule 并配置序列化/反序列化器
-			JavaTimeModule module = new JavaTimeModule();
-			module.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(DATE_FORMAT)));
-			module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
-			module.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(DATE_FORMAT)));
-			module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
-			SimpleModule simpleModule = new SimpleModule();
-			simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
-			builder.modules(module, simpleModule);
-			builder.timeZone(TimeZone.getTimeZone("GMT+8")); // 设置中国时区
-			builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // 禁用时间戳格式
-			// 配置忽略null值
-			builder.serializationInclusion(JsonInclude.Include.NON_NULL);
-		};
+	@Primary
+	public JsonMapper objectMapper(JsonMapper.Builder builder) {
+
+		// 1. 创建一个 SimpleModule 来替代旧的 JavaTimeModule
+		SimpleModule javaTimeModule = new SimpleModule();
+
+		// 配置 LocalDateTime 的序列化与反序列化
+		javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DATE_TIME_FORMATTER));
+		javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DATE_TIME_FORMATTER));
+
+		// 配置 LocalDate 的序列化与反序列化
+		javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DATE_FORMATTER));
+		javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DATE_FORMATTER));
+
+		// 2. 配置 Long 类型转为 String（解决前端精度丢失问题）
+		javaTimeModule.addSerializer(Long.class, ToStringSerializer.instance);
+		javaTimeModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+		builder.changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL));
+		builder
+			// 注册配置好的时间模块
+			.addModule(javaTimeModule)
+			// 设置序列化时忽略 null 值字段
+			// .serializationInclusion(JsonInclude.Include.NON_NULL)
+			// 设置时区为北京时间 (东八区)
+			.defaultTimeZone(TimeZone.getTimeZone("Asia/Shanghai"))
+			// 禁用将日期序列化为时间戳
+			// .disable(DeserializationFeature.)
+			// 忽略未知属性（反序列化时）
+			.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		return builder.build();
 	}
 }

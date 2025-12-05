@@ -6,25 +6,23 @@
 	<parent>
 		<groupId>com.l7bug</groupId>
 		<artifactId>l7bug-dependencies</artifactId>
-		<version>1.0.9-SNAPSHOT</version>
+		<version>4.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>l7bug-database-spring-boot-starter</artifactId>
 
 	<properties>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+			<artifactId>mybatis-plus-spring-boot4-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-jsqlparser-4.9</artifactId>
+			<artifactId>mybatis-plus-jsqlparser</artifactId>
 		</dependency>
 
 		<dependency>
