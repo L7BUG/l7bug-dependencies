@@ -23,6 +23,8 @@ public enum ClientErrorCode implements BaseErrorCode {
 	/*客户端非法操作 1开头*/
 	DATA_IS_NULL("C100000", "操作的数据不存在!"),
 	CHILDREN_IS_NOT_NULL("C100001", "子节点不为空!"),
+	FATHER_IS_NOT_FOLDER("C100002", "父节点的类型不为文件夹!"),
+	FATHER_IS_NOT_PAGE("C100003", "父节点的类型不为页面"),
 	;
 	private final String code;
 	private final String message;
