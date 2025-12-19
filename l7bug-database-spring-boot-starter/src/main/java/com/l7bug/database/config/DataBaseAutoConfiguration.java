@@ -10,8 +10,10 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.AuditorAware;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @AutoConfiguration
 @AllArgsConstructor
@@ -75,5 +77,10 @@ public class DataBaseAutoConfiguration {
 			strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
 			strictInsertFill(metaObject, "updateBy", currentUserId::getCurrentUserId, Long.class);
 		}
+	}
+
+	@Bean
+	public AuditorAware<Long> auditorProvider(CurrentUserId currentUserId) {
+		return () -> Optional.of(currentUserId.getCurrentUserId());
 	}
 }

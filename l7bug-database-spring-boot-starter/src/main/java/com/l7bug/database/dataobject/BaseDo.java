@@ -28,5 +28,5 @@ public class BaseDo extends BaseNotDeleDo {
 	 */
 	@TableField(fill = FieldFill.INSERT)
 	@TableLogic(value = "false",delval = "true")
-	private Boolean delFlag;
+	private Boolean delFlag = false;
 }
