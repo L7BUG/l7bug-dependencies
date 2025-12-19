@@ -80,7 +80,7 @@ public class DataBaseAutoConfiguration {
 	}
 
 	@Bean
-	public AuditorAware<Long> auditorProvider(CurrentUserId currentUserId) {
+	public AuditorAware<Long> auditorProvider() {
 		return () -> Optional.of(currentUserId.getCurrentUserId());
 	}
 }
