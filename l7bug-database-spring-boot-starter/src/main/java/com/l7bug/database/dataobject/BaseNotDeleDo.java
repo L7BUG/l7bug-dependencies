@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.l7bug.database.config.SnowflakeId;
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
@@ -13,6 +14,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -26,6 +28,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseNotDeleDo implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -7865608655588766372L;
