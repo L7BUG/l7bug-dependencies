@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.l7bug.database.config.SnowflakeId;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,9 +24,9 @@ import java.time.LocalDateTime;
  * @author Administrator
  * @since 2025/8/20 14:06
  */
-@Entity
 @Data
-public class BaseNotDeleDo implements Serializable {
+@MappedSuperclass
+public abstract class BaseNotDeleDo implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -7865608655588766372L;
 

@@ -18,7 +18,7 @@ import java.io.Serial;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
-public class BaseDo extends BaseNotDeleDo {
+public abstract class BaseDo extends BaseNotDeleDo {
 	@Serial
 	private static final long serialVersionUID = -7865608655588766372L;
 
