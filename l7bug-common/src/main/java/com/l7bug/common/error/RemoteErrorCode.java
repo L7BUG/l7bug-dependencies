@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum RemoteErrorCode implements BaseErrorCode {
-	REMOTE_ERROR("R000000", "调用第三方服务出错");
+	REMOTE_ERROR("R000000", "调用第三方服务出错"),
+	EMAIL_CLIENT_ERROR("R000001", "连接邮件服务失败"),
+	;
 	private final String code;
 	private final String message;
 }
