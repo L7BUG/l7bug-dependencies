@@ -18,7 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * BaseDo
@@ -50,9 +50,9 @@ public abstract class BaseNotDeleDo implements Serializable {
 	@CreatedDate
 	@Column(updatable = false)
 	@TableField(fill = FieldFill.INSERT)
-	private LocalDateTime createTime;
+	private OffsetDateTime createTime;
 
 	@LastModifiedDate
 	@TableField(fill = FieldFill.INSERT_UPDATE)
-	private LocalDateTime updateTime;
+	private OffsetDateTime updateTime;
 }
