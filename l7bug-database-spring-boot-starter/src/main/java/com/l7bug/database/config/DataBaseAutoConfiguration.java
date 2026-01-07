@@ -10,11 +10,17 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 
-@EnableJpaAuditing
+@EnableJpaAuditing(
+	dateTimeProviderRef = "auditingDateTimeProvider",
+	auditorAwareRef = "auditorProvider" // 引用下面的 Bean 名称
+)
 @AutoConfiguration
 @AllArgsConstructor
 @EnableConfigurationProperties(DatabaseType.class)
@@ -79,8 +85,13 @@ public class DataBaseAutoConfiguration {
 		}
 	}
 
-	@Bean
+	@Bean(name = "auditorProvider")
 	public MyAuditorAware auditorProvider() {
 		return new MyAuditorAware(currentUserId);
+	}
+
+	@Bean(name = "auditingDateTimeProvider")
+	public DateTimeProvider dateTimeProvider() {
+		return () -> Optional.of(OffsetDateTime.now());
 	}
 }
