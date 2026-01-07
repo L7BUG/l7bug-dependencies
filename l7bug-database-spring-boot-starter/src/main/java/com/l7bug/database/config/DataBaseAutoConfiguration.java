@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.auditing.DateTimeProvider;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDateTime;
@@ -86,8 +87,8 @@ public class DataBaseAutoConfiguration {
 	}
 
 	@Bean(name = "auditorProvider")
-	public MyAuditorAware auditorProvider() {
-		return new MyAuditorAware(currentUserId);
+	public AuditorAware<Long> auditorProvider() {
+		return () -> Optional.of(currentUserId.getCurrentUserId());
 	}
 
 	@Bean(name = "auditingDateTimeProvider")
