@@ -79,6 +79,11 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 		return new SetRequestAspect();
 	}
 
+	@Bean
+	public AuthoritiesAspect authoritiesAspect() {
+		return new AuthoritiesAspect();
+	}
+
 	/**
 	 * WebAutoConfiguration
 	 *
