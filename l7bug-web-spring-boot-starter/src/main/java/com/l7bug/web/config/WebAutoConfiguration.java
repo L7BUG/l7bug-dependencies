@@ -6,9 +6,10 @@ import com.l7bug.common.result.Result;
 import com.l7bug.web.context.MdcUserInfoContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -24,8 +26,9 @@ import java.util.UUID;
  * @author Administrator
  * @since 2025/11/4 17:52
  */
-@Slf4j
 public class WebAutoConfiguration implements WebMvcConfigurer {
+	private static final Logger log = LoggerFactory.getLogger(WebAutoConfiguration.class);
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HandlerInterceptor() {
@@ -34,7 +37,7 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 					String requestId = request.getHeader(SystemEtc.REQUEST_ID);
 					String token = request.getHeader(SystemEtc.TOKEN_HEADER);
 					if (!StringUtils.hasText(requestId)) {
-						requestId = UUID.randomUUID().toString();
+						requestId = UUID.randomUUID().toString().replace("-", "").toUpperCase(Locale.ROOT);
 					}
 					MdcUserInfoContext.putMdcTraceId(requestId);
 					if (!StringUtils.hasText(token)) {
