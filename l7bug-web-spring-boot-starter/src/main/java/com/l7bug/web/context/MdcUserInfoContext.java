@@ -12,9 +12,10 @@ import java.util.Optional;
  */
 public final class MdcUserInfoContext {
 
-	private final static String MDC_USER_NAME = "username";
+	private final static String MDC_USERNAME = "username";
 	private final static String MDC_TRACE_ID = "traceId";
 	private final static String MDC_TOKEN = "token";
+	private final static String AUTHORITIES = "authorities";
 
 	private MdcUserInfoContext() {
 	}
@@ -23,12 +24,12 @@ public final class MdcUserInfoContext {
 		MDC.put(MDC_TRACE_ID, requestId);
 	}
 
-	public static void putMdcUserName(String mdcUserName) {
-		MDC.put(MDC_USER_NAME, mdcUserName);
+	public static void putMdcUsername(String mdcUserName) {
+		MDC.put(MDC_USERNAME, mdcUserName);
 	}
 
-	public static String getMdcUserName() {
-		return Optional.ofNullable(MDC.get(MDC_USER_NAME)).orElse("");
+	public static String getMdcUsername() {
+		return Optional.ofNullable(MDC.get(MDC_USERNAME)).orElse("");
 	}
 
 	public static String getMdcTraceId() {
@@ -41,5 +42,13 @@ public final class MdcUserInfoContext {
 
 	public static String getMdcToken() {
 		return Optional.ofNullable(MDC.get(MDC_TOKEN)).orElse("");
+	}
+
+	public static void putMdcAuthorities(String authorities) {
+		MDC.put(AUTHORITIES, authorities);
+	}
+
+	public static String getMdcAuthorities() {
+		return Optional.ofNullable(MDC.get(AUTHORITIES)).orElse("");
 	}
 }

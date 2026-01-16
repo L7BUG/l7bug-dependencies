@@ -1,13 +1,17 @@
 package com.l7bug.web.config;
 
 
-import com.l7bug.common.etc.SystemEtc;
+import com.l7bug.common.error.ClientErrorCode;
+import com.l7bug.common.etc.Headers;
+import com.l7bug.common.exception.ClientException;
 import com.l7bug.common.result.Result;
+import com.l7bug.web.annotation.HasAuthorities;
 import com.l7bug.web.context.MdcUserInfoContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -34,10 +39,18 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 		registry.addInterceptor(new HandlerInterceptor() {
 				@Override
 				public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-					String requestId = request.getHeader(SystemEtc.REQUEST_ID);
-					String token = request.getHeader(SystemEtc.TOKEN_HEADER);
+					String requestId = request.getHeader(Headers.REQUEST_ID);
+					String token = request.getHeader(Headers.TOKEN);
+					String username = request.getHeader(Headers.USERNAME);
+					String authorities = request.getHeader(Headers.AUTHORITIES);
 					if (!StringUtils.hasText(requestId)) {
 						requestId = UUID.randomUUID().toString().replace("-", "").toUpperCase(Locale.ROOT);
+					}
+					if (StringUtils.hasText(username)) {
+						MdcUserInfoContext.putMdcUsername(username);
+					}
+					if (StringUtils.hasText(authorities)) {
+						MdcUserInfoContext.putMdcAuthorities(authorities);
 					}
 					MdcUserInfoContext.putMdcTraceId(requestId);
 					if (!StringUtils.hasText(token)) {
@@ -78,6 +91,16 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 		@AfterReturning(value = "execution(public com.l7bug.common.result.Result *(..))", returning = "result")
 		public void afterReturning(Result<?> result) {
 			result.setRequestId(MdcUserInfoContext.getMdcTraceId());
+		}
+	}
+
+	@Aspect
+	public static class AuthoritiesAspect {
+		@Before("@annotation(hasAuthorities)")
+		public void before(HasAuthorities hasAuthorities) {
+			if (!Arrays.asList(MdcUserInfoContext.getMdcAuthorities().split(",")).contains(hasAuthorities.value())) {
+				throw new ClientException(ClientErrorCode.ACCESS_DENIED);
+			}
 		}
 	}
 }
