@@ -55,6 +55,11 @@ public class ClientException extends AbstractException {
 
 	}
 
+	public ClientException(ClientErrorCode code, String message) {
+		super(code.getCode(), message);
+
+	}
+
 	public ClientException(ClientErrorCode code, Throwable e) {
 		super(code.getCode(), code.getMessage(), e);
 	}

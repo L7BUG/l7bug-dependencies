@@ -25,6 +25,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	CHILDREN_IS_NOT_NULL("C100001", "子节点不为空!"),
 	FATHER_IS_NOT_FOLDER("C100002", "父节点的类型不为文件夹!"),
 	FATHER_IS_NOT_PAGE("C100003", "父节点的类型不为页面"),
+	NODE_IS_NOT_NULL("C100004", "节点已存在"),
 	;
 	private final String code;
 	private final String message;
