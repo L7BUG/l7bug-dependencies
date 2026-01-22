@@ -29,6 +29,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	/*coupon非法操作 2开头*/
 	COUPON_ERROR("C200000","优惠卷模块调用错误"),
 	ALL_PLATFORM_PRODUCT_DISABLE_OPTION("C200001","全店铺通用禁止设置固定商品"),
+	COUPON_PRODUCT_SPECIFIC_UNCONFIGURED_ITEM("C200002","全店铺通用禁止设置固定商品"),
 	;
 	private final String code;
 	private final String message;
