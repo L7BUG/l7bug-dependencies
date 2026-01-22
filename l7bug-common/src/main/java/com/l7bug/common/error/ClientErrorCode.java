@@ -23,9 +23,9 @@ public enum ClientErrorCode implements BaseErrorCode {
 	/*
 	通用问题,1开头
 	 */
-	START_TIME_BEFORE_NOW("C100001", "开始时间不能晚于当前时间!"),
-	END_TIME_AFTER_NOW("C100002", "结束时间不能早于当前时间!"),
-	START_BEFORE_END("C100003", "开始时间不能早于当前时间!"),
+	START_TIME_AFTER_NOW("C100001", "开始时间在当前时间之后!"),
+	END_TIME_BEFORE_NOW("C100002", "结束时间在当前时间之前!"),
+	START_AFTER_END("C100003", "开始时间在结束时间之后!"),
 	/*system非法操作 2开头*/
 	DATA_IS_NULL("C200000", "操作的数据不存在!"),
 	CHILDREN_IS_NOT_NULL("C200001", "子节点不为空!"),
