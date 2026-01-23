@@ -26,6 +26,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	START_TIME_AFTER_NOW("C100001", "开始时间在当前时间之后!"),
 	END_TIME_BEFORE_NOW("C100002", "结束时间在当前时间之前!"),
 	START_AFTER_END("C100003", "开始时间在结束时间之后!"),
+	VALIDATION_FAILED("C100004", "参数校验不通过!"),
 	/*system非法操作 2开头*/
 	DATA_IS_NULL("C200000", "操作的数据不存在!"),
 	CHILDREN_IS_NOT_NULL("C200001", "子节点不为空!"),
