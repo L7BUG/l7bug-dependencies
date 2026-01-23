@@ -1,2 +1,3 @@
 com.l7bug.database.config.DataBaseAutoConfiguration
 com.l7bug.database.config.MplusSnowflakeGenerator
+com.l7bug.database.config.DefaultCurrentUserId

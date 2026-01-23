@@ -1,4 +1,3 @@
-
 package com.l7bug.database.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
@@ -18,6 +17,12 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
+/**
+ * DataBaseAutoConfiguration
+ *
+ * @author Administrator
+ * @since 2026/1/23 12:16
+ */
 @EnableJpaAuditing(
 	dateTimeProviderRef = "auditingDateTimeProvider",
 	auditorAwareRef = "auditorProvider" // 引用下面的 Bean 名称
@@ -41,13 +46,6 @@ public class DataBaseAutoConfiguration {
 		return interceptor;
 	}
 
-	@Bean
-	@ConditionalOnMissingBean
-	public CurrentUserId currentUserId() {
-		return new CurrentUserId() {
-		};
-	}
-
 
 	/**
 	 * MyBatis-Plus 源数据自动填充类
@@ -58,10 +56,14 @@ public class DataBaseAutoConfiguration {
 		return new MyMetaObjectHandler(currentUserId);
 	}
 
-	public interface CurrentUserId {
-		default Long getCurrentUserId() {
-			return -1L;
-		}
+	@Bean(name = "auditorProvider")
+	public AuditorAware<Long> auditorProvider() {
+		return () -> Optional.of(currentUserId.getCurrentUserId());
+	}
+
+	@Bean(name = "auditingDateTimeProvider")
+	public DateTimeProvider dateTimeProvider() {
+		return () -> Optional.of(OffsetDateTime.now());
 	}
 
 	@AllArgsConstructor
@@ -84,15 +86,5 @@ public class DataBaseAutoConfiguration {
 			strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
 			strictInsertFill(metaObject, "updateBy", currentUserId::getCurrentUserId, Long.class);
 		}
-	}
-
-	@Bean(name = "auditorProvider")
-	public AuditorAware<Long> auditorProvider() {
-		return () -> Optional.of(currentUserId.getCurrentUserId());
-	}
-
-	@Bean(name = "auditingDateTimeProvider")
-	public DateTimeProvider dateTimeProvider() {
-		return () -> Optional.of(OffsetDateTime.now());
 	}
 }
