@@ -20,12 +20,23 @@ public enum ClientErrorCode implements BaseErrorCode {
 	USER_IS_DISABLE("C000005", "登录失败!用户已被禁用!请联系管理员解除封禁!"),
 	USER_NOT_NULL("C000006", "注册失败,该用户已被注册"),
 	USER_PASSWORD_IS_ERROR("C000007", "用户密码错误!"),
-	/*客户端非法操作 1开头*/
-	DATA_IS_NULL("C100000", "操作的数据不存在!"),
-	CHILDREN_IS_NOT_NULL("C100001", "子节点不为空!"),
-	FATHER_IS_NOT_FOLDER("C100002", "父节点的类型不为文件夹!"),
-	FATHER_IS_NOT_PAGE("C100003", "父节点的类型不为页面"),
-	NODE_IS_NOT_NULL("C100004", "节点已存在"),
+	/*
+	通用问题,1开头
+	 */
+	START_TIME_AFTER_NOW("C100001", "开始时间在当前时间之后!"),
+	END_TIME_BEFORE_NOW("C100002", "结束时间在当前时间之前!"),
+	START_AFTER_END("C100003", "开始时间在结束时间之后!"),
+	/*system非法操作 2开头*/
+	DATA_IS_NULL("C200000", "操作的数据不存在!"),
+	CHILDREN_IS_NOT_NULL("C200001", "子节点不为空!"),
+	FATHER_IS_NOT_FOLDER("C200002", "父节点的类型不为文件夹!"),
+	FATHER_IS_NOT_PAGE("C200003", "父节点的类型不为页面"),
+	NODE_IS_NOT_NULL("C200004", "节点已存在"),
+
+	/*coupon非法操作 3开头*/
+	COUPON_ERROR("C300000","优惠卷模块调用错误"),
+	ALL_PLATFORM_PRODUCT_DISABLE_OPTION("C300001","全店铺通用禁止设置固定商品"),
+	COUPON_PRODUCT_SPECIFIC_UNCONFIGURED_ITEM("C300002","全店铺通用禁止设置固定商品"),
 	;
 	private final String code;
 	private final String message;
