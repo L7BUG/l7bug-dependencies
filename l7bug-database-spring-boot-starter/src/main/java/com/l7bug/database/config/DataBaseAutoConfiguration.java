@@ -13,7 +13,6 @@ import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -76,14 +75,14 @@ public class DataBaseAutoConfiguration {
 		public void insertFill(MetaObject metaObject) {
 			strictInsertFill(metaObject, "createBy", currentUserId::getCurrentUserId, Long.class);
 			strictInsertFill(metaObject, "updateBy", currentUserId::getCurrentUserId, Long.class);
-			strictInsertFill(metaObject, "createTime", LocalDateTime::now, LocalDateTime.class);
-			strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
+			strictInsertFill(metaObject, "createTime", OffsetDateTime::now, OffsetDateTime.class);
+			strictInsertFill(metaObject, "updateTime", OffsetDateTime::now, OffsetDateTime.class);
 			strictInsertFill(metaObject, "delFlag", () -> false, Boolean.class);
 		}
 
 		@Override
 		public void updateFill(MetaObject metaObject) {
-			strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
+			strictInsertFill(metaObject, "updateTime", OffsetDateTime::now, OffsetDateTime.class);
 			strictInsertFill(metaObject, "updateBy", currentUserId::getCurrentUserId, Long.class);
 		}
 	}
