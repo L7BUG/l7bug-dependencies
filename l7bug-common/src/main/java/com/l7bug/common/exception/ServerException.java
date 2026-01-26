@@ -59,4 +59,8 @@ public class ServerException extends AbstractException {
 	public ServerException(BaseErrorCode code, Throwable e) {
 		super(code.getCode(), code.getMessage(), e);
 	}
+
+	public ServerException(ServerErrorCode code, String message) {
+		super(code.getCode(), message);
+	}
 }
