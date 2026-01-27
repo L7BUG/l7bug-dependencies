@@ -27,6 +27,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	END_TIME_BEFORE_NOW("C100002", "结束时间在当前时间之前!"),
 	START_AFTER_END("C100003", "开始时间在结束时间之后!"),
 	VALIDATION_FAILED("C100004", "参数校验不通过!"),
+	NO_DUPLICATE_SUBMIT("C100005", "重复提交!"),
 	/*system非法操作 2开头*/
 	DATA_IS_NULL("C200000", "操作的数据不存在!"),
 	CHILDREN_IS_NOT_NULL("C200001", "子节点不为空!"),
@@ -35,9 +36,9 @@ public enum ClientErrorCode implements BaseErrorCode {
 	NODE_IS_NOT_NULL("C200004", "节点已存在"),
 
 	/*coupon非法操作 3开头*/
-	COUPON_ERROR("C300000","优惠卷模块调用错误"),
-	ALL_PLATFORM_PRODUCT_DISABLE_OPTION("C300001","全店铺通用禁止设置固定商品"),
-	COUPON_PRODUCT_SPECIFIC_UNCONFIGURED_ITEM("C300002","全店铺通用禁止设置固定商品"),
+	COUPON_ERROR("C300000", "优惠卷模块调用错误"),
+	ALL_PLATFORM_PRODUCT_DISABLE_OPTION("C300001", "全店铺通用禁止设置固定商品"),
+	COUPON_PRODUCT_SPECIFIC_UNCONFIGURED_ITEM("C300002", "全店铺通用禁止设置固定商品"),
 	;
 	private final String code;
 	private final String message;
