@@ -28,8 +28,8 @@ public enum ClientErrorCode implements BaseErrorCode {
 	START_AFTER_END("C100003", "开始时间在结束时间之后!"),
 	VALIDATION_FAILED("C100004", "参数校验不通过!"),
 	NO_DUPLICATE_SUBMIT("C100005", "重复提交!"),
+	DATA_IS_NULL("C100005", "操作的数据不存在!"),
 	/*system非法操作 2开头*/
-	DATA_IS_NULL("C200000", "操作的数据不存在!"),
 	CHILDREN_IS_NOT_NULL("C200001", "子节点不为空!"),
 	FATHER_IS_NOT_FOLDER("C200002", "父节点的类型不为文件夹!"),
 	FATHER_IS_NOT_PAGE("C200003", "父节点的类型不为页面"),
@@ -39,6 +39,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	COUPON_ERROR("C300000", "优惠卷模块调用错误"),
 	ALL_PLATFORM_PRODUCT_DISABLE_OPTION("C300001", "全店铺通用禁止设置固定商品"),
 	COUPON_PRODUCT_SPECIFIC_UNCONFIGURED_ITEM("C300002", "全店铺通用禁止设置固定商品"),
+	COUPON_TEMPLATE_IS_END("C300003", "优惠卷已结束!"),
 	;
 	private final String code;
 	private final String message;
