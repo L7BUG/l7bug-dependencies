@@ -3,6 +3,8 @@ package com.l7bug.common.page;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * 基础分页对象
  *
@@ -20,12 +22,19 @@ public class PageQuery {
 	 * 页面大小
 	 */
 	private long size = 10;
-	/**
-	 * 需要进行排序的字段,默认 id
-	 */
-	private String column = "id";
-	/**
-	 * 是否正序排列，默认 true
-	 */
-	private boolean asc = true;
+
+	private List<OrderItem> orders = List.of(new OrderItem());
+
+	@Getter
+	@Setter
+	public static class OrderItem {
+		/**
+		 * 需要进行排序的字段,默认 id
+		 */
+		private String column = "id";
+		/**
+		 * 是否正序排列，默认 true
+		 */
+		private boolean asc = true;
+	}
 }
