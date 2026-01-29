@@ -40,6 +40,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	ALL_PLATFORM_PRODUCT_DISABLE_OPTION("C300001", "全店铺通用禁止设置固定商品"),
 	COUPON_PRODUCT_SPECIFIC_UNCONFIGURED_ITEM("C300002", "全店铺通用禁止设置固定商品"),
 	COUPON_TEMPLATE_IS_END("C300003", "优惠卷已结束!"),
+	COUPON_TEMPLATE_PUSH_TASK_CREATE_FAILED("C300004", "优惠卷推送任务创建失败!"),
 	;
 	private final String code;
 	private final String message;
