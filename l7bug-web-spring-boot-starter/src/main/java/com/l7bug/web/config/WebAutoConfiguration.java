@@ -18,7 +18,6 @@ import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -89,15 +88,15 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 		return new AuthoritiesAspect();
 	}
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**") // 拦截所有路径
-			.allowedOriginPatterns("*") // 允许所有来源 (Spring Boot 3 建议用 Patterns)
-			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许的方法
-			.allowedHeaders("*") // 允许的头信息
-			.allowCredentials(true) // 是否允许携带 Cookie
-			.maxAge(3600); // 预检请求有效期（秒）
-	}
+	// @Override
+	// public void addCorsMappings(CorsRegistry registry) {
+	// 	registry.addMapping("/**") // 拦截所有路径
+	// 		.allowedOriginPatterns("*") // 允许所有来源 (Spring Boot 3 建议用 Patterns)
+	// 		.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许的方法
+	// 		.allowedHeaders("*") // 允许的头信息
+	// 		.allowCredentials(true) // 是否允许携带 Cookie
+	// 		.maxAge(3600); // 预检请求有效期（秒）
+	// }
 
 	/**
 	 * WebAutoConfiguration
