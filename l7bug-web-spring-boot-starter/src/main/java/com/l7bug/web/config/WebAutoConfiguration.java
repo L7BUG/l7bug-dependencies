@@ -58,7 +58,7 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 						MdcUserInfoContext.putMdcToken(token);
 					}
 					if (StringUtils.hasText(userId)) {
-						MdcUserInfoContext.putMdcUserId(token);
+						MdcUserInfoContext.putMdcUserId(userId);
 					}
 					log.info("[{}]开始请求:{}", request.getMethod(), request.getRequestURI());
 					long currentTimeMillis = System.currentTimeMillis();
