@@ -42,6 +42,7 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 					String requestId = request.getHeader(Headers.REQUEST_ID);
 					String token = request.getHeader(Headers.TOKEN);
 					String username = request.getHeader(Headers.USERNAME);
+					String userId = request.getHeader(Headers.USER_ID);
 					String authorities = request.getHeader(Headers.AUTHORITIES);
 					if (!StringUtils.hasText(requestId)) {
 						requestId = UUID.randomUUID().toString().replace("-", "").toUpperCase(Locale.ROOT);
@@ -53,8 +54,11 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 						MdcUserInfoContext.putMdcAuthorities(authorities);
 					}
 					MdcUserInfoContext.putMdcTraceId(requestId);
-					if (!StringUtils.hasText(token)) {
+					if (StringUtils.hasText(token)) {
 						MdcUserInfoContext.putMdcToken(token);
+					}
+					if (StringUtils.hasText(userId)) {
+						MdcUserInfoContext.putMdcUserId(token);
 					}
 					log.info("[{}]开始请求:{}", request.getMethod(), request.getRequestURI());
 					long currentTimeMillis = System.currentTimeMillis();

@@ -10,5 +10,6 @@ public interface Headers {
 	String REQUEST_ID = "L7-BUG-REQUEST-ID";
 	String TOKEN = "L7-BUG-TOKEN-GUB_7L";
 	String USERNAME = "L7-BUG-USERNAME";
+	String USER_ID = "L7-BUG-USER-ID";
 	String AUTHORITIES = "L7-BUG-authorities";
 }

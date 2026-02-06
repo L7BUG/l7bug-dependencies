@@ -16,6 +16,7 @@ public final class MdcUserInfoContext {
 	private final static String MDC_TRACE_ID = "traceId";
 	private final static String MDC_TOKEN = "token";
 	private final static String AUTHORITIES = "authorities";
+	private final static String MDC_USER_ID = "userId";
 
 	private MdcUserInfoContext() {
 	}
@@ -50,5 +51,13 @@ public final class MdcUserInfoContext {
 
 	public static String getMdcAuthorities() {
 		return Optional.ofNullable(MDC.get(AUTHORITIES)).orElse("");
+	}
+
+	public static void putMdcUserId(String userId) {
+		MDC.put(MDC_USER_ID, userId);
+	}
+
+	public static String getMdcUserId() {
+		return Optional.ofNullable(MDC.get(MDC_USER_ID)).orElse("");
 	}
 }
