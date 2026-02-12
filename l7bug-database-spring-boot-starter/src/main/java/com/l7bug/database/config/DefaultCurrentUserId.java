@@ -12,4 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnMissingBean(CurrentUserId.class)
 public class DefaultCurrentUserId implements CurrentUserId {
+	@Override
+	public Long getCurrentUserId() {
+		return -1L;
+	}
 }

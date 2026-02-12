@@ -7,7 +7,5 @@ package com.l7bug.database.config;
  * @since 2026/1/23 12:14
  */
 public interface CurrentUserId {
-	default Long getCurrentUserId() {
-		return -1L;
-	}
+	Long getCurrentUserId();
 }
