@@ -28,11 +28,11 @@ public enum ClientErrorCode implements BaseErrorCode {
 	START_AFTER_END("C100003", "开始时间在结束时间之后!"),
 	VALIDATION_FAILED("C100004", "参数校验不通过!"),
 	NO_DUPLICATE_SUBMIT("C100005", "重复提交!"),
-	DATA_IS_NULL("C100005", "操作的数据不存在!"),
+	DATA_IS_NULL("C100006", "操作的数据不存在!"),
 	/**
 	 * 状态流转异常,如我从[待处理]直接跳到[已处理]
 	 */
-	STATUS_FLOW_ERROR("C100006", "状态流转异常!"),
+	STATUS_FLOW_ERROR("C100007", "状态流转异常!"),
 	/*system非法操作 2开头*/
 	CHILDREN_IS_NOT_NULL("C200001", "子节点不为空!"),
 	FATHER_IS_NOT_FOLDER("C200002", "父节点的类型不为文件夹!"),
