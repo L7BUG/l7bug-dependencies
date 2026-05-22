@@ -24,7 +24,7 @@
 		<java.version>25</java.version>
 		<maven.compiler.source>25</maven.compiler.source>
 		<maven.compiler.target>25</maven.compiler.target>
-		<deploy.version>4.0.0-SNAPSHOT</deploy.version>
+		<deploy.version>4.0.6-SNAPSHOT</deploy.version>
 		<spring-cloud.version>2025.1.0</spring-cloud.version>
 		<!--		<spring-cloud-alibaba.version>2025.1.0.0-SNAPSHOT</spring-cloud-alibaba.version>-->
 		<shardingsphere.version>5.5.2</shardingsphere.version>
