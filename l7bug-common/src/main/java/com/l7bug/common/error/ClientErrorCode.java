@@ -38,6 +38,7 @@ public enum ClientErrorCode implements BaseErrorCode {
 	FATHER_IS_NOT_FOLDER("C200002", "父节点的类型不为文件夹!"),
 	FATHER_IS_NOT_PAGE("C200003", "父节点的类型不为页面"),
 	NODE_IS_NOT_NULL("C200004", "节点已存在"),
+	PARENT_NOT_HAVE_MENU("C200005", "父节点未拥有该菜单!"),
 
 	/*coupon非法操作 3开头*/
 	COUPON_ERROR("C300000", "优惠卷模块调用错误"),
