@@ -117,6 +117,9 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
 	public static class AuthoritiesAspect {
 		@Before("@annotation(hasAuthorities)")
 		public void before(HasAuthorities hasAuthorities) {
+			if ("-1".equals(MdcUserInfoContext.getMdcUserId())) {
+				return;
+			}
 			if (!Arrays.asList(MdcUserInfoContext.getMdcAuthorities().split(",")).contains(hasAuthorities.value())) {
 				throw new ClientException(ClientErrorCode.ACCESS_DENIED);
 			}
