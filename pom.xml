@@ -230,6 +230,11 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</path>
+						<!-- 生成 spring-configuration-metadata.json，IDEA yaml 配置提示依赖它 -->
+						<path>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-configuration-processor</artifactId>
+						</path>
 						<!-- other annotation processors -->
 					</annotationProcessorPaths>
 				</configuration>

@@ -1,0 +1,45 @@
+{
+  "hints": [
+    {
+      "name": "l7bug.database.db-type",
+      "values": [
+        {
+          "value": "POSTGRE_SQL",
+          "description": "PostgreSQL（默认）"
+        },
+        {
+          "value": "MYSQL",
+          "description": "MySQL"
+        },
+        {
+          "value": "MARIADB",
+          "description": "MariaDB"
+        },
+        {
+          "value": "ORACLE",
+          "description": "Oracle"
+        },
+        {
+          "value": "SQL_SERVER",
+          "description": "SQL Server"
+        },
+        {
+          "value": "SQLITE",
+          "description": "SQLite"
+        },
+        {
+          "value": "H2",
+          "description": "H2 内存数据库"
+        },
+        {
+          "value": "DM",
+          "description": "达梦数据库"
+        },
+        {
+          "value": "KINGBASE_ES",
+          "description": "人大金仓"
+        }
+      ]
+    }
+  ]
+}
